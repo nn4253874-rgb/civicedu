@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CivicEdu – Học liệu Chính trị và Giáo dục công dân</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f8f8;--surface:#fff;--ink:#14213d;--muted:#51607a;--brand:#0b6e6e;--brand-ink:#fff;--accent:#ffc93c;--line:#d6e2e2;--soft:#e3f1f1;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a1f;--surface:#15262c;--ink:#e8f1f2;--muted:#9db1b6;--brand:#3fb5b0;--brand-ink:#08201f;--line:#26414a;--soft:#1a3139;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1a1f;--surface:#15262c;--ink:#e8f1f2;--muted:#9db1b6;--brand:#3fb5b0;--brand-ink:#08201f;--line:#26414a;--soft:#1a3139;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+.bar{display:flex;align-items:center;gap:16px;min-height:64px;flex-wrap:wrap;padding:8px 0}
+.logo{font-weight:800;font-size:1.3rem;text-decoration:none;color:var(--brand);display:flex;align-items:center;gap:8px}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--accent);display:inline-block}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav a{padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{background:var(--soft)}
+.hero{background:var(--brand);color:var(--brand-ink);padding:56px 0 64px}
+.hero h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.15;margin:0 0 12px;max-width:18em;font-weight:800}
+.hero p{max-width:40em;margin:0 0 24px;opacity:.92;font-size:1.05rem}
+.search{display:flex;gap:8px;max-width:640px;background:var(--surface);padding:6px;border-radius:14px}
+.search input{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;padding:10px 12px;min-width:0;outline:none}
+button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 18px;font-weight:700;background:var(--accent);color:#14213d;text-decoration:none;display:inline-block}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tags{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;font-size:.9rem}
+.tags button{background:rgba(255,255,255,.18);color:inherit;padding:4px 12px;font-weight:500}
+section{padding:48px 0}
+h2{font-size:1.6rem;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 24px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:left;color:var(--ink);display:block;width:100%;font-weight:400}
+.cat:hover{border-color:var(--brand)}
+.cat b{display:block;font-size:1.05rem;margin-bottom:4px}
+.cat span{color:var(--muted);font-size:.9rem}
+.ico{width:40px;height:40px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:1.3rem;margin-bottom:10px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.chip{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:6px 14px;font-weight:500;border-radius:99px}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+select{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);margin-left:auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{height:110px;display:grid;place-items:center;font-size:2.4rem}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.meta{display:flex;gap:6px;flex-wrap:wrap;font-size:.78rem}
+.meta span{background:var(--soft);padding:2px 8px;border-radius:6px}
+.card h3{margin:0;font-size:1rem;line-height:1.35}
+.card p{margin:0;color:var(--muted);font-size:.9rem;flex:1}
+.card button{align-self:flex-start;margin-top:8px;padding:8px 14px;background:var(--brand);color:var(--brand-ink)}
+.empty{grid-column:1/-1;padding:32px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:14px}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.quiz{max-width:720px;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:24px}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:500}
+.opt:hover:not(:disabled){border-color:var(--brand)}
+.opt.ok{background:#1f8a4c;color:#fff;border-color:#1f8a4c}
+.opt.no{background:#b3261e;color:#fff;border-color:#b3261e}
+.fb{min-height:1.6em;color:var(--muted);font-size:.92rem}
+.steps{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));counter-reset:s}
+.steps div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px}
+dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 32px);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(5,15,20,.6)}
+.dlg{padding:24px;max-height:80vh;overflow:auto}
+.dlg h3{margin:0 0 8px;font-size:1.3rem}
+.dlg ul{padding-left:20px}
+.row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.row .ghost{background:var(--soft);color:var(--ink)}
+footer{background:#14213d;color:#d9e2f0;padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+footer .cols{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+footer b{color:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+<a class="logo" href="#top"><i></i>CivicEdu</a>
+<nav aria-label="Điều hướng chính"><a href="#tai-lieu">Tài liệu</a><a href="#danh-muc">Chủ đề</a><a href="#kiem-tra">Kiểm tra nhanh</a><a href="#cach-dung">Cách dùng</a><a href="#gioi-thieu">Giới thiệu</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<h1>Học liệu Chính trị và Giáo dục công dân cho giáo viên và sinh viên</h1>
+<p>Giáo án, bài giảng, phiếu bài tập và trò chơi ôn tập, sắp xếp theo chủ đề và cấp học. Tìm nhanh, mở xem và dùng ngay trong tiết dạy.</p>
+<form class="search" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Tìm tài liệu, ví dụ: Hiến pháp, nhà nước, quyền công dân" aria-label="Tìm tài liệu"><button id="go" type="button">Tìm kiếm</button></form>
+<div class="tags" id="tags"></div>
+</div></div>
+
+<section id="danh-muc"><div class="wrap">
+<h2>Duyệt theo chủ đề</h2><p class="sub">Chọn một chủ đề để lọc danh sách tài liệu bên dưới.</p>
+<div class="grid" id="cats"></div>
+</div></section>
+
+<section id="tai-lieu" class="alt"><div class="wrap">
+<h2>Thư viện tài liệu</h2><p class="sub" id="count"></p>
+<div class="filters" id="types"></div>
+<div class="filters"><label for="lv">Cấp học</label>
+<select id="lv"><option value="">Tất cả cấp học</option><option>THCS</option><option>THPT</option><option>Đại học</option></select></div>
+<div class="grid" id="list"></div>
+</div></section>
+
+<section id="kiem-tra"><div class="wrap">
+<h2>Kiểm tra nhanh</h2><p class="sub">5 câu hỏi ôn tập về nhà nước và pháp luật Việt Nam.</p>
+<div class="quiz" aria-live="polite"><div id="qbox"></div></div>
+</div></section>
+
+<section id="cach-dung" class="alt"><div class="wrap">
+<h2>Cách sử dụng</h2><p class="sub">Ba bước để chuẩn bị một tiết học.</p>
+<div class="steps">
+<div><b>1. Tìm tài liệu</b><p>Nhập từ khóa hoặc chọn chủ đề, loại tài liệu và cấp học.</p></div>
+<div><b>2. Xem trước nội dung</b><p>Mở thẻ tài liệu để đọc mục tiêu, gợi ý hoạt động và thời lượng.</p></div>
+<div><b>3. Dùng trong lớp</b><p>Sao chép nội dung gợi ý hoặc in trang để làm phiếu học tập.</p></div>
+</div>
+</div></section>
+
+<section id="gioi-thieu"><div class="wrap">
+<h2>Giới thiệu</h2>
+<p style="max-width:44em">CivicEdu là website học liệu do sinh viên ngành Chính trị học, Trường Đại học Sư phạm Hà Nội thực hiện như một sản phẩm học tập. Mục tiêu là hỗ trợ giảng dạy, học tập và tự ôn luyện các nội dung về chính trị, pháp luật và đạo đức công dân. Nội dung hiện là bản mẫu để minh họa và cần được giáo viên đối chiếu với chương trình và văn bản pháp luật hiện hành trước khi dùng chính thức.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap cols">
+<div><b>CivicEdu</b><br>Học liệu hỗ trợ dạy và học Chính trị, Giáo dục công dân.</div>
+<div><b>Liên hệ</b><br>Khoa Giáo dục Chính trị<br>Trường Đại học Sư phạm Hà Nội<br>136 Xuân Thủy, Cầu Giấy, Hà Nội</div>
+<div><b>Lưu ý</b><br>Sản phẩm bài tập học phần, nội dung mang tính minh họa.</div>
+</div></footer>
+
+<dialog id="dlg" aria-labelledby="dt"><div class="dlg" id="dbody"></div></dialog>
+
+<script>
+var CATS=[
+{k:"Nhà nước và pháp luật",i:"⚖️",d:"Bộ máy nhà nước, pháp luật"},
+{k:"Hiến pháp và quyền công dân",i:"📜",d:"Quyền và nghĩa vụ cơ bản"},
+{k:"Tư tưởng Hồ Chí Minh",i:"⭐",d:"Đạo đức, phong cách, tư tưởng"},
+{k:"Kỹ năng sống và đạo đức",i:"🤝",d:"Giá trị, trách nhiệm, ứng xử"},
+{k:"Chính trị học đại cương",i:"🏛️",d:"Khái niệm, quyền lực, hệ thống chính trị"}];
+var TYPES=["Giáo án","Bài giảng","Phiếu bài tập","Trò chơi","Đề kiểm tra"];
+var TI={"Giáo án":"📝","Bài giảng":"📊","Phiếu bài tập":"✏️","Trò chơi":"🎲","Đề kiểm tra":"✅"};
+var TC={"Giáo án":"#cfe9e6","Bài giảng":"#ffe9ad","Phiếu bài tập":"#e0e4ff","Trò chơi":"#ffd9d2","Đề kiểm tra":"#d9f0d0"};
+var R=[
+{t:"Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam",c:0,y:"Bài giảng",l:"Đại học",m:45,s:"Đặc điểm, nguyên tắc tổ chức và hoạt động của Nhà nước.",o:["Trình bày được khái niệm nhà nước pháp quyền","Phân tích nguyên tắc quyền lực nhà nước là thống nhất, có phân công, phối hợp và kiểm soát giữa các cơ quan","Liên hệ với thực tiễn quản lý nhà nước"]},
+{t:"Bộ máy nhà nước: Quốc hội, Chính phủ, Tòa án",c:0,y:"Giáo án",l:"THPT",m:45,s:"Chức năng của từng cơ quan trong bộ máy nhà nước.",o:["Nêu vị trí, chức năng của Quốc hội, Chính phủ, Tòa án nhân dân","Phân biệt quyền lập pháp, hành pháp, tư pháp","Hoạt động nhóm: sơ đồ hóa bộ máy nhà nước"]},
+{t:"Pháp luật và đời sống",c:0,y:"Phiếu bài tập",l:"THCS",m:20,s:"Nhận biết quy tắc, quy định và hành vi hợp pháp.",o:["Phân loại tình huống đúng, sai theo quy định","Giải thích vì sao cần tuân thủ pháp luật","Viết một thông điệp ngắn về ý thức pháp luật"]},
+{t:"Hiến pháp năm 2013: nội dung cơ bản",c:1,y:"Bài giảng",l:"THPT",m:45,s:"Bố cục và các chế định chính của Hiến pháp năm 2013.",o:["Biết Hiến pháp được Quốc hội thông qua ngày 28/11/2013, có hiệu lực từ 01/01/2014","Nắm các chương chính về quyền con người, quyền và nghĩa vụ công dân","Thảo luận vai trò của Hiến pháp"]},
+{t:"Quyền và nghĩa vụ cơ bản của công dân",c:1,y:"Phiếu bài tập",l:"THCS",m:25,s:"Ghép quyền với nghĩa vụ tương ứng qua tình huống.",o:["Liệt kê các quyền và nghĩa vụ cơ bản","Xử lý 4 tình huống thực tế","Tự đánh giá việc thực hiện nghĩa vụ của bản thân"]},
+{t:"Ai nhanh hơn: Ghép cặp điều luật",c:1,y:"Trò chơi",l:"THPT",m:15,s:"Trò chơi thi đua theo đội để ôn kiến thức Hiến pháp.",o:["Chia lớp thành 4 đội","Mỗi đội ghép thẻ quyền với điều khoản tương ứng","Đội đúng và nhanh nhất thắng"]},
+{t:"Tư tưởng Hồ Chí Minh về đạo đức cách mạng",c:2,y:"Bài giảng",l:"Đại học",m:50,s:"Nội dung cốt lõi và giá trị vận dụng hiện nay.",o:["Hệ thống các phạm trù đạo đức cách mạng","Phân tích ý nghĩa của việc học tập và làm theo tấm gương đạo đức","Thảo luận: vận dụng trong sinh hoạt sinh viên"]},
+{t:"Học tập và làm theo tấm gương Bác Hồ",c:2,y:"Giáo án",l:"THCS",m:40,s:"Kể chuyện, thảo luận và cam kết hành động nhỏ.",o:["Kể lại một câu chuyện về Bác","Rút ra bài học về giản dị, trung thực","Lập cam kết hành động trong tuần"]},
+{t:"Đề kiểm tra 15 phút: Tư tưởng Hồ Chí Minh",c:2,y:"Đề kiểm tra",l:"THPT",m:15,s:"10 câu trắc nghiệm kèm đáp án gợi ý.",o:["10 câu nhận biết và thông hiểu","Thang điểm 10","Đáp án và hướng dẫn chấm"]},
+{t:"Trách nhiệm công dân trong cộng đồng",c:3,y:"Giáo án",l:"THCS",m:45,s:"Rèn kỹ năng hợp tác và ý thức cộng đồng.",o:["Xác định vấn đề của lớp, trường","Lập kế hoạch một hoạt động tình nguyện","Phản hồi và rút kinh nghiệm"]},
+{t:"Tư duy phản biện với thông tin trên mạng",c:3,y:"Bài giảng",l:"THPT",m:40,s:"Kiểm chứng nguồn tin và tránh tin giả.",o:["Nhận diện dấu hiệu tin giả","Thực hành kiểm tra nguồn qua 3 bước","Thảo luận trách nhiệm khi chia sẻ thông tin"]},
+{t:"Đóng vai: Giải quyết xung đột trong nhóm",c:3,y:"Trò chơi",l:"THCS",m:20,s:"Thực hành lắng nghe và thương lượng.",o:["Bốc thăm tình huống","Đóng vai và đổi vai","Nhận xét cách giải quyết"]},
+{t:"Khái niệm chính trị, quyền lực và hệ thống chính trị",c:4,y:"Bài giảng",l:"Đại học",m:50,s:"Các khái niệm nền tảng của Chính trị học.",o:["Phân biệt chính trị, quyền lực chính trị, quyền lực nhà nước","Nêu các thành tố của hệ thống chính trị","Ví dụ minh họa từ Việt Nam"]},
+{t:"Hệ thống chính trị Việt Nam: sơ đồ và thảo luận",c:4,y:"Phiếu bài tập",l:"Đại học",m:30,s:"Điền sơ đồ và phân tích mối quan hệ giữa các thành tố.",o:["Hoàn thiện sơ đồ hệ thống chính trị","Xác định vai trò từng tổ chức","Viết đoạn tổng kết 150 từ"]},
+{t:"Đề kiểm tra giữa kỳ: Chính trị học đại cương",c:4,y:"Đề kiểm tra",l:"Đại học",m:60,s:"Câu hỏi trắc nghiệm và tự luận kèm thang điểm.",o:["20 câu trắc nghiệm","2 câu tự luận","Thang điểm và gợi ý đáp án"]}];
+var QZ=[
+{q:"Cơ quan quyền lực nhà nước cao nhất của nước CHXHCN Việt Nam là:",a:["Chính phủ","Quốc hội","Tòa án nhân dân tối cao","Mặt trận Tổ quốc"],c:1},
+{q:"Hiến pháp hiện hành của Việt Nam được thông qua năm nào?",a:["1992","2001","2013","2020"],c:2},
+{q:"Quyền lực nhà nước ở Việt Nam là:",a:["Phân chia hoàn toàn","Thống nhất, có sự phân công, phối hợp, kiểm soát","Thuộc về một cơ quan duy nhất","Không cần kiểm soát"],c:1},
+{q:"Cơ quan hành chính nhà nước cao nhất là:",a:["Quốc hội","Viện kiểm sát","Chính phủ","Ủy ban nhân dân"],c:2},
+{q:"Nghĩa vụ nào sau đây là nghĩa vụ cơ bản của công dân?",a:["Trung thành với Tổ quốc","Chọn nơi cư trú ở nước ngoài","Miễn nộp thuế","Không cần tuân theo pháp luật"],c:0}];
+
+var st={cat:-1,type:"",lv:"",q:""};
+var $=function(i){return document.getElementById(i)};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+$("cats").innerHTML=CATS.map(function(c,i){return '<button class="cat" data-i="'+i+'"><div class="ico">'+c.i+'</div><b>'+c.k+'</b><span>'+c.d+'</span></button>'}).join("");
+$("types").innerHTML=['<button class="chip" data-t="" aria-pressed="true">Tất cả</button>'].concat(TYPES.map(function(t){return '<button class="chip" data-t="'+t+'" aria-pressed="false">'+t+'</button>'})).join("");
+$("tags").innerHTML="Gợi ý: "+["Hiến pháp","nhà nước","đạo đức","pháp luật"].map(function(k){return '<button data-k="'+k+'">'+k+'</button>'}).join("");
+
+function render(){
+  var q=st.q.trim().toLowerCase();
+  var rows=R.map(function(r,i){r.i=i;return r}).filter(function(r){
+    return (st.cat<0||r.c===st.cat)&&(!st.type||r.y===st.type)&&(!st.lv||r.l===st.lv)&&(!q||(r.t+" "+r.s+" "+CATS[r.c].k).toLowerCase().indexOf(q)>-1)});
+  $("count").textContent=rows.length+" tài liệu"+(st.cat>=0?" trong chủ đề “"+CATS[st.cat].k+"”":"");
+  $("list").innerHTML=rows.length?rows.map(function(r){
+    return '<article class="card"><div class="thumb" style="background:'+TC[r.y]+'" aria-hidden="true">'+TI[r.y]+'</div><div class="body"><div class="meta"><span>'+r.y+'</span><span>'+r.l+'</span><span>'+r.m+' phút</span></div><h3>'+esc(r.t)+'</h3><p>'+esc(r.s)+'</p><button data-open="'+r.i+'">Xem tài liệu</button></div></article>'}).join("")
+    :'<div class="empty">Không tìm thấy tài liệu phù hợp. Hãy thử từ khóa khác hoặc chọn “Tất cả”.</div>';
+  Array.prototype.forEach.call($("types").children,function(b){b.setAttribute("aria-pressed",String(b.dataset.t===st.type))});
+}
+function jump(){$("tai-lieu").scrollIntoView()}
+$("cats").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var i=+b.dataset.i;st.cat=st.cat===i?-1:i;render();jump()});
+$("types").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.type=b.dataset.t;render()});
+$("lv").addEventListener("change",function(e){st.lv=e.target.value;render()});
+function doSearch(){st.q=$("q").value;st.cat=-1;render();jump()}
+$("go").addEventListener("click",doSearch);
+$("q").addEventListener("keydown",function(e){if(e.key==="Enter")doSearch()});
+$("tags").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;$("q").value=b.dataset.k;doSearch()});
+$("list").addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;var r=R[+b.dataset.open];
+  $("dbody").innerHTML='<div class="meta"><span>'+r.y+'</span><span>'+r.l+'</span><span>'+r.m+' phút</span><span>'+CATS[r.c].k+'</span></div><h3 id="dt">'+esc(r.t)+'</h3><p>'+esc(r.s)+'</p><b>Nội dung gợi ý</b><ul>'+r.o.map(function(x){return "<li>"+esc(x)+"</li>"}).join("")+'</ul><div class="row"><button id="cp">Sao chép nội dung</button><button class="ghost" id="pr">In trang</button><button class="ghost" id="cl">Đóng</button></div>';
+  $("dlg").showModal();
+  $("cl").onclick=function(){$("dlg").close()};
+  $("pr").onclick=function(){window.print()};
+  $("cp").onclick=function(){var t=r.t+"\n"+r.s+"\n- "+r.o.join("\n- ");var done=function(){$("cp").textContent="Đã sao chép"};
+    try{navigator.clipboard.writeText(t).then(done,function(){$("cp").textContent="Không sao chép được"})}catch(x){$("cp").textContent="Không sao chép được"}};
+});
+$("dlg").addEventListener("click",function(e){if(e.target===$("dlg"))$("dlg").close()});
+
+var qi=0,score=0;
+function quiz(){
+  var b=$("qbox");
+  if(qi>=QZ.length){b.innerHTML='<h3>Kết quả: '+score+'/'+QZ.length+'</h3><p>'+(score>=4?"Rất tốt! Bạn nắm vững nội dung này.":"Hãy xem lại các tài liệu về nhà nước và Hiến pháp rồi làm lại.")+'</p><button id="re">Làm lại</button>';
+    $("re").onclick=function(){qi=0;score=0;quiz()};return}
+  var q=QZ[qi];
+  b.innerHTML='<p><b>Câu '+(qi+1)+'/'+QZ.length+'.</b> '+esc(q.q)+'</p>'+q.a.map(function(a,i){return '<button class="opt" data-i="'+i+'">'+esc(a)+'</button>'}).join("")+'<div class="fb" id="fb"></div>';
+  b.onclick=function(e){var o=e.target.closest(".opt");if(!o||o.disabled)return;var i=+o.dataset.i;
+    Array.prototype.forEach.call(b.querySelectorAll(".opt"),function(x){x.disabled=true;if(+x.dataset.i===q.c)x.classList.add("ok")});
+    if(i===q.c){score++;$("fb").textContent="Chính xác."}else{o.classList.add("no");$("fb").textContent="Chưa đúng. Đáp án đúng được tô xanh."}
+    var n=document.createElement("button");n.textContent=qi===QZ.length-1?"Xem kết quả":"Câu tiếp theo";n.onclick=function(){qi++;quiz()};b.appendChild(n)};
+}
+render();quiz();
+</script>
+</body>
+</html>
